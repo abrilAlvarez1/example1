@@ -1,0 +1,31 @@
+-- Interfaz Transporte
+Public interface Transporte{
+  String transportar(String origen, String destino)
+}
+
+public class Auto implements Transporte{
+ @Override
+    public String transportar(String origen, String destino) {
+        return "[Auto] Transportando desde " + origen + " hacia " + destino + " por carretera.";
+    }
+}
+
+public class Dron implements Transporte {
+    @Override
+    public String transportar(String origen, String destino) {
+        return "[Dron] Volando de " + origen + " a " + destino + ".";
+    }
+}
+
+public class SistemaTransporte {
+    public static Transporte obtenerTransporte(String tipo) {
+        switch (tipo.toLowerCase()) {
+            case "auto":
+                return new Auto();
+            case "dron":
+                return new Dron();
+            default:
+                throw new IllegalArgumentException("Tipo de transporte no válido: " + tipo);
+        }
+    }
+}
